@@ -15,7 +15,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 # Initialize model and prompt template
 # model = OllamaLLM(model="llama3.1:8b")
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHHA"
+os.environ["GOOGLE_API_KEY"] = "IzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHH"
 model=ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
 prompt_template = '''
