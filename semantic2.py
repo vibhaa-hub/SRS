@@ -9,8 +9,6 @@ from langchain_ollama import OllamaLLM
 from langchain_ollama import OllamaEmbeddings
 import os
 from datetime import datetime
-916943021426
-AIzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHHA
 
 
 # model = CTransformers(model=model_path, temperature=0.0, config={'max_new_tokens': 9000, 'context _length': 9000})
