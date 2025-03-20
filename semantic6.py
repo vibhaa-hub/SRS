@@ -13,7 +13,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 # model = OllamaLLM(model="llama3.1:8b")
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHHA"
+os.environ["GOOGLE_API_KEY"] = "IzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHH"
 model=ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
 # First prompt: Raw Text Output (Now includes requirement description)

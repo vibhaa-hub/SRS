@@ -3,7 +3,7 @@ import streamlit as st
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-# Define the prompt templates
+
 gherkin_prompt_template = """
 Given the following software requirements specification (SRS) in natural language, 
 generate Gherkin-based user stories with 'Given', 'When', 'Then' steps for each SRS requirement. Format each user story in a separate block.
@@ -23,7 +23,7 @@ Gherkin User Story:
 gherkin_prompt = PromptTemplate(input_variables=["requirement"], template=gherkin_prompt_template)
 step_definitions_prompt = PromptTemplate(input_variables=["gherkin_user_story"], template=step_definitions_prompt_template)
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHHA"  # Replace with your Google API key
+os.environ["GOOGLE_API_KEY"] = "IzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHH"
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
 gherkin_chain = gherkin_prompt | llm
