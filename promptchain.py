@@ -9,11 +9,9 @@ from langchain_ollama import OllamaEmbeddings
 from langchain.schema import Document
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-# Setup the model for both prompts
-
 # model = OllamaLLM(model="llama3.1:8b")
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHHA"
+os.environ["GOOGLE_API_KEY"] = "IzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHH"
 model=ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
 
@@ -67,8 +65,8 @@ def generate_raw_text(requirement):
 
 def generate_user_stories_from_raw_text(raw_text):
     prompt = PromptTemplate(input_variables=["raw_text"], template=prompt_template_second)
-    second_chain = prompt | model  # Use the LLM chain to process raw text and generate user stories
-    user_stories = second_chain.invoke(raw_text).content # Generate user stories based on raw text
+    second_chain = prompt | model  
+    user_stories = second_chain.invoke(raw_text).content 
     return user_stories
 
 def extract_requirements_from_docx(docx_file_path):
