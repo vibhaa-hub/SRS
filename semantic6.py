@@ -13,10 +13,10 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 # model = OllamaLLM(model="llama3.1:8b")
 
-os.environ["GOOGLE_API_KEY"] = "IzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHH"
+os.environ["GOOGLE_API_KEY"] = "AIzaSyBC_TAoSPKWHDsqKDcWR8S2ai9tITCyHHA"
 model=ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
-# First prompt: Raw Text Output (Now includes requirement description)
+
 prompt_template_first = '''
 <s>[INST]
 You are a researcher tasked with answering questions about an SRS document. All output must be in plain text, without any JSON formatting. Don't add explanations beyond the raw output.
@@ -39,7 +39,7 @@ Ensure that you do not truncate the response, and provide all the requirements
 SRS: {requirement}
 '''
 
-# Second prompt: User Stories and Acceptance Criteria (Takes raw text as input)
+
 prompt_template_second = '''
 <s>[INST]
 You are a researcher tasked with generating user stories and acceptance criteria from the raw text that describes a requirement and its stakeholders. 
@@ -59,21 +59,18 @@ Ensure that you do not truncate the response, and provide the full user stories 
 </INST>
 '''
 
-# Function to generate raw text output for requirements, type, and stakeholders
 def generate_raw_text(requirement):
     prompt = PromptTemplate(input_variables=["requirement"], template=prompt_template_first)
     first_chain = prompt | model  # Use the LLM chain to generate raw text
     raw_text = first_chain.invoke(requirement).content # Get raw text from the first prompt
     return raw_text
 
-# Function to generate user stories from raw text output
 def generate_user_stories_from_raw_text(raw_text):
     prompt = PromptTemplate(input_variables=["raw_text"], template=prompt_template_second)
     second_chain = prompt | model  # Use the LLM chain to process raw text and generate user stories
     user_stories = second_chain.invoke(raw_text).content # Generate user stories based on raw text
     return user_stories
 
-# Function to extract requirements from the document
 def extract_requirements_from_docx(docx_file_path):
     from docx import Document as dox
     document = dox(docx_file_path)
@@ -84,18 +81,17 @@ def extract_requirements_from_docx(docx_file_path):
 
     return requirements
 
-# Function to create FAISS index for requirements
+
 def create_faiss_index(requirements, embedding):
     docs = [Document(page_content=req) for req in requirements]
     vector_store = FAISS.from_documents(docs, embedding)
     return vector_store
 
-# Function to retrieve a relevant requirement from FAISS index
 def retrieve_requirement(query, vector_store, k=1):
     docs = vector_store.similarity_search(query, k=k)
     return docs[0].page_content if docs else None
 
-# Main function to process the SRS and generate user stories
+
 def process_srs_and_generate_stories(docx_file_path, output_directory):
     os.makedirs(output_directory, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -142,10 +138,8 @@ uploaded_file = st.file_uploader("Choose a `.docx` file", type=["docx"], label_v
 if uploaded_file:
     st.success("File uploaded successfully! 🎉")
 
-    # Option to choose the output directory
     output_directory = st.text_input("Output Directory", "D:/Code/OUTPUT", help="Specify the directory to save the generated file.")
 
-    # Button to generate user stories
     if st.button("Generate User Stories 🔄"):
         with st.spinner('Processing... Please wait.'):
 
