@@ -123,22 +123,20 @@ def process_srs_and_generate_stories(docx_file_path, output_directory):
     return output_file_path
 
 
-# Streamlit UI code
 st.set_page_config(page_title="SRS to User Stories Generator", page_icon="📄", layout="wide")
 
-# Sidebar for navigation and file upload
+
 with st.sidebar:
     st.header("SRS to User Stories Generator")
     st.subheader("Upload your SRS document (in .docx format)")
 
-# Main title and description
+
 st.title("SRS to User Stories Generator 📄")
 st.markdown("""
 This tool allows you to upload an SRS (Software Requirements Specification) document and generates **user stories** and **acceptance criteria**.
 Simply upload the document, and click the button below to generate the user stories.
 """)
 
-# File uploader with better UI
 uploaded_file = st.file_uploader("Choose a `.docx` file", type=["docx"], label_visibility="collapsed")
 
 if uploaded_file:
